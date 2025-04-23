@@ -1,0 +1,30 @@
+name: "Wireviz Build"
+
+on:
+  push:
+    paths:
+      - '**.yml'
+
+env:
+  ARTIFACT_NAME: ${{ github.event.repository.name }}_wireviz_${{ github.run_id }}
+  
+jobs:
+    Wireviz:
+      runs-on: ubuntu-latest
+      container: ghcr.io/muratovas/wvci:latest
+      # env:
+      #   OUTPUT_DIR: build
+        # PRJ_VERSION: "test"
+      steps:
+        - name: Check out repository code
+          uses: actions/checkout@v4
+          
+        - name: Build drawing
+          run: wvMake.sh
+
+        - name: Upload artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: ${{ env.ARTIFACT_NAME }}
+            path: build
+            if-no-files-found: warn

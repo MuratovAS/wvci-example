@@ -1,0 +1,65 @@
+options:
+  mini_bom_mode: false
+
+metadata:
+  title: CC-20-20-1000
+  company: company
+  authors_1_name: name
+  authors_1_date: 22.04.2025
+  revisions_1_name: vV.V.V-VVV
+  template:
+    name: DIN-6771-wvci
+    sheetsize: A3
+connectors:
+  ID 20-1: &template
+    type: ID:20
+    pincount: 4
+    pinlabels: [SCL, SDA, GND, PWR]
+    subtype: female
+    manufacturer: Amphenol
+    pn: 90311-004LF
+    mpn: '<a href="https://www.digikey.com/en/products/detail/amphenol-cs-fci/90311-004LF/1090030">90311-004LF</a>'
+    image:
+      src: asset/90311-004LF.png
+    additional_components:
+      - type: Terminals
+        pn: 77138-001LF
+        mpn: '<a href="https://www.digikey.com/en/products/detail/amphenol-cs-fci/77138-001LF/1489555">77138-001LF</a>'
+        qty_multiplier: populated
+        manufacturer: Amphenol
+  ID 20-2:
+    <<: *template
+
+cables:
+  W1: 
+    category: bundle
+    gauge: 26 AWG
+    length: 1000 mm
+    colors: [OG, WH, BK, RD]
+    pn: [26AWG-0.8MM-ORANGE-mPPE,
+      26AWG-0.8MM-WHITE-mPPE, 
+      26AWG-0.8MM-BLACK-mPPE, 
+      26AWG-0.8MM-RED-mPPE]
+    mpn: ['<a href="https://www.digikey.com/en/products/detail/tensility-international-corp/30-01778/13998269">839-30-01778-30-ND</a>',
+      '<a href="https://www.digikey.com/en/products/detail/tensility-international-corp/30-01774/13998491">839-30-01774-30-ND</a>', 
+      '<a href="https://www.digikey.com/en/products/detail/tensility-international-corp/30-01773/13998355">839-30-01773-30-ND</a>', 
+      '<a href="https://www.digikey.com/en/products/detail/tensility-international-corp/30-01772/13998452">839-30-01772-30-ND</a>']
+    manufacturer: Tensility
+    additional_components:
+      - type: insulation
+        subtype: silicone tube 4mm
+
+connections:
+  - - ID 20-1: [1-4]
+    - W1: [1-4]
+    - ID 20-2: [1-4]
+
+additional_bom_items:
+  -
+    description: Crimp tool
+    qty: 1
+    designators:
+      - ID 20
+    manufacturer: Molex
+    pn: 213309-1200
+    mpn: '<a href="https://www.digikey.com/en/products/detail/molex/2133091200/13686893">213309-1200</a>'

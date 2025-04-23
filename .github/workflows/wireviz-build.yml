@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**.yml'
+      - '!.git*/**'
 
 env:
   ARTIFACT_NAME: ${{ github.event.repository.name }}_wireviz_${{ github.run_id }}
@@ -18,7 +19,9 @@ jobs:
       steps:
         - name: Check out repository code
           uses: actions/checkout@v4
-          
+          with:
+            fetch-depth: 10
+            
         - name: Build drawing
           run: wvMake.sh
 

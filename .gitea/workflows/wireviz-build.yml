@@ -1,0 +1,38 @@
+name: "Wireviz Build"
+
+on:
+  push:
+    paths:
+      - '**.yml'
+      - '!.git*/**'
+
+env:
+  ARTIFACT_NAME: ${{ github.event.repository.name }}_wireviz_${{ github.run_id }}
+  
+jobs:
+    Wireviz:
+      runs-on: debian
+      steps:
+        - name: Check out repository code
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 10
+            
+        - name: Build drawing
+          uses: docker://ghcr.io/muratovas/wvci:latest
+          # env:
+          #   OUTPUT_DIR: build
+          #   PRJ_VERSION: "test"
+          with:
+            entrypoint: /bin/sh
+            args: |
+              "-c"
+              "git config http.sslVerify false; \
+              wvMake.sh"
+
+        - name: Upload artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: ${{ env.ARTIFACT_NAME }}
+            path: build
+            if-no-files-found: warn

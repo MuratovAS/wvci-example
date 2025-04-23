@@ -1,2 +1,3 @@
 # wvci-example
-Example of using wvci 
+
+This repository is an example of [wvci](https://github.com/MuratovAS/wvci) usage, and new features are also tested here.

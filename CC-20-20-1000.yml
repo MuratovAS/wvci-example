@@ -10,6 +10,7 @@ metadata:
   template:
     name: DIN-6771-wvci
     sheetsize: A3
+
 connectors:
   ID 20-1: &template
     type: ID:20

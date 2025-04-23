@@ -1,0 +1,21 @@
+# General
+*.bck
+*.bak
+﻿.~*
+_autosave-*
+*/#auto_saved_files#
+*/*-backups/*
+
+build
+
+# Freecad
+*.FCStd1
+
+# Drawio
+*.bkp
+*.dtmp
+
+#Python
+__pycache__/
+*.py[cod]
+

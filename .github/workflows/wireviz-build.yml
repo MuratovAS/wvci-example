@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**.yml'
+      - '!.git*/**'
 
 env:
   ARTIFACT_NAME: ${{ github.event.repository.name }}_wireviz_${{ github.run_id }}
